@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobSecScan - Mobile Application Security Assessment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔒 MobSecScan</h1>
+            <p>Advanced Mobile Application Security Assessment Tool</p>
+            <span class="security-badge">OWASP Mobile Top 10 Compliant</span>
+        </div>
+        
+        <div class="main-content">
+            <div class="panel">
+                <h2>📱 Application Upload</h2>
+                <div class="form-group">
+                    <label for="appName">Application Name:</label>
+                    <input type="text" id="appName" placeholder="e.g., MyBankingApp">
+                </div>
+                
+                <div class="form-group">
+                    <label for="platform">Platform:</label>
+                    <select id="platform">
+                        <option value="android">Android (.apk)</option>
+                        <option value="ios">iOS (.ipa)</option>
+                        <option value="hybrid">Hybrid (React Native/Ionic)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Upload Application File:</label>
+                    <div class="file-upload" id="fileUpload">
+                        <i>📱</i>
+                        <p><strong>Drop your mobile app file here</strong></p>
+                        <p>or click to browse</p>
+                        <p style="font-size: 0.9em; color: #666; margin-top: 10px;">Supported: .apk, .ipa files</p>
+                        <input type="file" id="fileInput" style="display: none;" accept=".apk,.ipa">
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="startScan()">🔍 Start Security Assessment</button>
+            </div>
+            
+            <div class="panel">
+                <h2>⚙️ Scan Configuration</h2>
+                
+                <div class="form-group">
+                    <label for="scanDepth">Scan Depth:</label>
+                    <select id="scanDepth">
+                        <option value="basic">Basic Scan (Quick)</option>
+                        <option value="comprehensive" selected>Comprehensive Scan</option>
+                        <option value="deep">Deep Scan (Thorough)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Security Tests to Include:</label>
+                    <div style="margin-top: 10px;">
+                        <label><input type="checkbox" checked> Insecure Data Storage</label><br>
+                        <label><input type="checkbox" checked> Insecure Communication</label><br>
+                        <label><input type="checkbox" checked> Insecure Authentication</label><br>
+                        <label><input type="checkbox" checked> Insecure Authorization</label><br>
+                        <label><input type="checkbox" checked> Insufficient Cryptography</label><br>
+                        <label><input type="checkbox" checked> Code Quality Issues</label><br>
+                        <label><input type="checkbox" checked> Client Side Injection</label><br>
+                        <label><input type="checkbox" checked> Security Misconfigurations</label><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scanning-animation" id="scanningAnimation">
+            <div class="scanner"></div>
+            <h3>🔍 Performing Security Assessment...</h3>
+            <p>Analyzing mobile application for security vulnerabilities</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p id="scanStatus">Initializing scan...</p>
+        </div>
+        
+        <div class="panel vulnerability-list" id="resultsPanel" style="display: none;">
+            <h2>📊 Security Assessment Results</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="highVulns">0</div>
+                    <div class="stat-label">High Risk</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="mediumVulns" style="color: #f39c12;">0</div>
+                    <div class="stat-label">Medium Risk</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="lowVulns" style="color: #27ae60;">0</div>
+                    <div class="stat-label">Low Risk</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalVulns" style="color: #3498db;">0</div>
+                    <div class="stat-label">Total Found</div>
+                </div>
+            </div>
+            
+            <div id="vulnerabilityList"></div>
+        </div>
+        
+        <div class="methodology">
+            <h3>🛡️ Assessment Methodology</h3>
+            <p>This tool follows the OWASP Mobile Application Security Testing Guide (MASTG) and identifies vulnerabilities based on the OWASP Mobile Top 10.</p>
+            
+            <div class="test-categories">
+                <div class="test-category">
+                    <h4>Static Analysis</h4>
+                    <p>Code review, configuration analysis, and binary inspection</p>
+                </div>
+                <div class="test-category">
+                    <h4>Dynamic Analysis</h4>
+                    <p>Runtime behavior analysis and network traffic inspection</p>
+                </div>
+                <div class="test-category">
+                    <h4>Interactive Testing</h4>
+                    <p>Authentication bypass, injection attacks, and data validation</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="owasp-reference">
+            <h3>📚 OWASP Mobile Top 10 (2016)</h3>
+            <p>This assessment covers all critical mobile application security risks as defined by OWASP, including improper platform usage, insecure data storage, insecure communication, insecure authentication, insufficient cryptography, and more.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
